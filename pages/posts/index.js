@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import logo from "../logo.png";
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
+    keyFilename: '../../secrets.json',
     scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
   });
 
