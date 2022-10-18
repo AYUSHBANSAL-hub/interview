@@ -6,7 +6,17 @@ import { useEffect, useState } from "react";
 import logo from "../logo.png";
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
-    keyFilename: '../../secrets.json',
+    keyFilename: "../../secrets.json",
+    keyFile: "../../secrets.json",
+    projectId: "interview-portal-accio",
+    credentials: {
+      client_email:
+        "service-account@interview-portal-accio.iam.gserviceaccount.com",
+      client_id: "101448654081665438605",
+      client_secret:
+        "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCkgcKS1L5lDCL+\nmp1txK4Ir4Q/czorkxmT4i0Fq5jlNSQQ8vmoRD+7XnXkIvZDxxx0mx5b4SwyD/xP\nQKx3shADu4jXsaRGmqTvsUvRhJ4lqsOVoM4zPi6HrE+8GNYpYWYDNWbT1psOm0YY\nDSFl1E3DPKozqiRKOGIm2sgu88odJbasgaCpIYYhnMsG1AOC1A5BdHTw76S6Y78F\nPEz4XIoqqmynRmCgKaXUPMgTVuJO73BH3O4TtLMbp1p8tH/8xPpaBsOfW8O1/JvP\n0z0sn9fYuMFRURZ0CfWVzZe63BpN0vp3DtpaRbqbUDtE6I0585I8+Yg+3p56dxG9\nSEI2+z+tAgMBAAECgf9ur+B7aymwU7o4FVBXyz5OGcqh5qX9K7zKBCTG6+60Sk06\nGkJhNYqsR6KLHfsVH6PF0ZlbuOZDyP27VYi2ANlFqakpeB1QZD0WCfU5xEGkloGC\n6+/SCsTEBOyhYxS2QxKglg3Z+0vZSCChjjQqj+7Crs7WdGR2i/l+qzaGYQJdGS0z\nNgAvMYEqqYWxIK9g11+OuPLltwmmKb/x4ghloh33WtDJ8nH0h6CMohhFxGoEQVgd\nRrC7AaJyqnI9kKtxLi5Mh/bKbevtH+l+xd2nWrtGtBMvkGtz0w707EeNlq1Rcv4S\nZGt0ChjcdCZK5PQi+nqEc13+M3dy0KVyzl0N0VkCgYEA5VAFfLjCzYtHmMmYb8Br\nHC0xSlR7+jZkFg+l2rD3+MR0tPLEtWDWVMISVOoZCW/wB2fEi1UhwJwbRhe1YEbH\nxgkM1dHv3sPIjyw8Iide17IwtTQLtuSWQggVL+5A5nhrPh4XGS7/DTJaKQPYDF/f\nvoaak9ccD4Q4Q/O5oXRh5dUCgYEAt6b2dFmaQqQ0OAeBnKr2gUcF2c5eNmvrvxeS\nw5q+1Z38FGFCh1odUbJKMGv0X7HJvciCMm7E75f+rN7ZW+RI0YOQY3paHaL+ahec\ng4kzDVUSfHzsyW2mN2iXurDvkxb7hhHNCdn3djJEc/pnc80sjMCCDWIV2K2+2UkS\nEM44JnkCgYAldqxe0wSodg/Na2onH8WgBdYesazLlSVG4WmUUANDNj1m7p6qj1aU\n5FwAWXqbqxkI7LAUn2TzRc3C5s6wGwA6X3IkYLcSquPSWES+w7XgAXGpuQYM7E2M\nHivv97nMrXG/5USaza3HpylJuCIM64DvbKhGbQddlZlnqKL0OMJhvQKBgBuV5KcN\nXnJsH7vaxMk3lNdOR76zlMsv4rVNYSoocEm99UNKaKfUDVtcIHCthoNpPRhYqdXR\ndZtXhVWKE7QN0jJGRMXsduTEutpMuaG4VgbGpIQ2b4rCAZmJCGFuek3pwdYdjmLQ\nbq8+VbHmBuwKAYsSz3YbKZTmZChXJXOIxj5hAoGAK4T5FEvX4FUsnuowsmVHBHnI\n6IHV8rKDmItJLg+4L4yRrIq8+coe/I3FQsoQ37WjRGNcc+tCs5Vj+dZwWZy0OyYl\nDMlXGGTmP9BT3H2y0FEprjh62ZpZajGxrYwwVN3TjFq18YnoobIG1Fz/kNjE9Wc2\nsVBamfBtcT4qF1IUPmY=\n-----END PRIVATE KEY-----\n",
+    },
+
     scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
   });
 
