@@ -19,12 +19,8 @@ export async function getServerSideProps({ query }) {
     spreadsheetId: process.env.SHEET_ID,
     range: "Sheet2!A2:V10000",
   });
-  console.log("yeh data aarha", response1.data.values);
-  console.log("yeh data aarha second data", response2.data.values);
   const posts1 = response1.data.values;
   const posts2 = response2.data.values;
-  console.log(posts1);
-  console.log(posts2);
   const arr_sheet1 = [];
   const arr_sheet2 = [];
   posts1.forEach((value) =>
@@ -72,12 +68,6 @@ export default function Post({ posts1, arr_sheet1, arr_sheet2 }) {
   }, [email]);
 
   function getDetails() {
-    console.log(
-      "yo",
-      arr_sheet2.filter(function (obj) {
-        return obj.email == email;
-      })[0]
-    );
     setData1(
       arr_sheet1.filter(function (obj) {
         return obj.email == email;
