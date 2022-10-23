@@ -85,12 +85,12 @@ export default function Post({ posts1, arr_sheet1, arr_sheet2 }) {
     setData1(
       arr_sheet1.filter(function (obj) {
         return obj.email == email;
-      }).slice(-1)
+      })[0]
     );
     setData2(
       arr_sheet2.filter(function (obj) {
         return obj.email == email;
-      }).slice(-1)
+      })[0]
     );
   }
   console.log(arr_sheet2);
