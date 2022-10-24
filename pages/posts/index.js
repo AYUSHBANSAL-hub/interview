@@ -4,6 +4,7 @@ import { google } from "googleapis";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import logo from "../logo.png";
+import { ContactDetails } from "../../ContactDetails";
 export async function getServerSideProps({ query }) {
   const auth = await google.auth.getClient({
     keyFilename: "../../secrets.json",
@@ -37,16 +38,21 @@ export async function getServerSideProps({ query }) {
   const posts2 = response2.data.values;
   const arr_sheet1 = [];
   const arr_sheet2 = [];
-  posts1.forEach((value) =>
+  posts1.forEach((value) => {
     arr_sheet1.push({
       name: value[0] ?? "",
       email: value[1] ?? "",
       number: value[2] ?? "",
       interview_start_time: value[4] ?? "",
-      interviewer_name: value[5] ?? "",
+      interviewer_Email: value[5] ?? "",
+      interviewContact:
+        ContactDetails.filter(
+          (e) => e.Email1 == value[5] || e.Email2 == value[5]
+        )[0]?.Contact ?? "",
+      AyushRemark: value[8] ?? "",
       InterviewStatus: value[9] ?? "",
-    })
-  );
+    });
+  });
   posts2.forEach((value) =>
     arr_sheet2.push({
       interviewerName: value[3] ?? "",
@@ -83,17 +89,21 @@ export default function Post({ posts1, arr_sheet1, arr_sheet2 }) {
 
   function getDetails() {
     setData1(
-      arr_sheet1.filter(function (obj) {
-        return obj.email == email;
-      })[0]
+      arr_sheet1
+        .filter(function (obj) {
+          return obj.email == email.toLowerCase();
+        })
+        .slice(-1)[0]
     );
     setData2(
-      arr_sheet2.filter(function (obj) {
-        return obj.email == email;
-      })[0]
+      arr_sheet2
+        .filter(function (obj) {
+          return obj.email == email.toLowerCase();
+        })
+        .slice(-1)[0]
     );
   }
-  console.log(arr_sheet2);
+  //console.log(arr_sheet2);
   return (
     <div>
       <div className="Header">
@@ -141,8 +151,19 @@ export default function Post({ posts1, arr_sheet1, arr_sheet2 }) {
       </div>
       <div id="data-row">
         <p id="field">Interviewer Email:</p>
-        <p id="response"> {data1?.interviewer_name}</p>
+        <p id="response"> {data1?.interviewer_Email}</p>
       </div>
+      <div id="data-row">
+        <p id="field">Interviewer Contact:</p>
+        <p id="response"> {data1?.interviewContact}</p>
+      </div>
+      {data1?.AyushRemark != "" ? (
+        <div id="data-row">
+          <p id="field">Remark by Ayush:</p>
+          <p id="response"> {data1?.AyushRemark}</p>
+        </div>
+      ) : null}
+
       <div id="data-row">
         <p id="field">interviewer Name:</p>
         <p id="response"> {data2?.interviewerName}</p>
